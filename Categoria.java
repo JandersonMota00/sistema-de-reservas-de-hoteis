@@ -21,7 +21,7 @@ public class Categoria {
             return true;
         if (obj == null  || getClass() != obj.getClass())
             return false;
-        Categoria nomeDaCategoria = (Categoria) obj;
-        return Objects.equals(nomeDaCategoria, Categoria.nomeDaCategoria);
+        Categoria categoria = (Categoria) obj;
+        return nomeDaCategoria.equals(categoria.nomeDaCategoria);
     }
 }
