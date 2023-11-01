@@ -20,7 +20,7 @@ public class ListaDeCategoria {
     }
     private boolean pesquisarCategoria (Categoria categoria) {
         for (int i = 0; i < getLista().size(); i++) {
-            if(getLista().get(i).getnomeDaCategoria().equals(categoria.getnomeDaCategoria())){
+            if(getLista().get(i).getNomeDaCategoria().equals(categoria.getNomeDaCategoria())){
                 return false;
             }
         }
