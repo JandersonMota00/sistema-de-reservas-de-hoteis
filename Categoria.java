@@ -6,7 +6,7 @@ public class Categoria {
         this.nomeDaCategoria = nomeDaCategoria;
         this.preco = preco;
     }
-    public String getnomeDaCategoria() {
+    public String getNomeDaCategoria() {
         return nomeDaCategoria;
     }
     public void setNomeDaCategoria(String nomeDaCategoria) {
@@ -25,7 +25,7 @@ public class Categoria {
             if (obj instanceof Categoria) {
                 // transforma OBJ da classe Object, na classe Categoria.
                 Categoria categoriaAuciliar = (Categoria) obj; //typecast
-                return this.getnomeDaCategoria().equals(categoriaAuciliar.getnomeDaCategoria());
+                return this.getNomeDaCategoria().equals(categoriaAuciliar.getNomeDaCategoria());
             }
         }
         if (obj == null  || getClass() != obj.getClass()) {
