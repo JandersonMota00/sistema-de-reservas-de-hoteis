@@ -1,14 +1,19 @@
+import java.text.ParseException; //Sinaliza um erro foi atingido inesperademente (não corresponde a um formato ou padrão necessário do número ou data).
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Quarto {
     private int id;
-    private String quartos;
+    private String categoriaDoQuarto;
     private int quantDeDiarias;
+    private String dataDaReservaEntrda;
+    private String dataDaReservaSaida;
 
-    Categoria categorias;
-
-    public Quarto(int id, String quartos, int quantDeDiarias) { //construtor
+    public Quarto(int id, String categoriaDoQuarto, String dataDaReservaEntrda, String dataDaReservaSaida) {
         this.id = id;
-        this.quartos = quartos;
-        this.quantDeDiarias = quantDeDiarias;
+        this.categoriaDoQuarto = categoriaDoQuarto;
+        this.dataDaReservaEntrda = dataDaReservaEntrda;
+        this.dataDaReservaSaida = dataDaReservaSaida;
     }
 
     public int getId() {
@@ -19,27 +24,70 @@ public class Quarto {
         this.id = id;
     }
 
-    public String getQuartos() {
-        return quartos;
+    public String categoriaDoQuarto() {
+        return categoriaDoQuarto;
     }
 
-    public void setQuartos(String quartos) {
-        this.quartos = quartos;
+    public void categoriaDoQuarto(String categoriaDoQuarto) {
+        this.categoriaDoQuarto = categoriaDoQuarto;
     }
 
+    //Calcular a 'data de saida' - 'data de entrada' para informar a quantidade de diárias.
+    //PESQUISAR
     public int getQuantDeDiarias() {
         return quantDeDiarias;
     }
 
-    public void setQuantDeDiarias(int quantDeDiarias) {
-        this.quantDeDiarias = quantDeDiarias;
+    public String getDataDaReservaEntrda() {
+       
+        try {
+            //Vai pegar a data que o usuario digitar neste formato "dd/MM/yyyy" em String.
+            //Está em formato String, é preciso converter para DATE.
+            SimpleDateFormat formatado = new SimpleDateFormat("dd/MM/yyyy"); 
+            
+            //Vai converter na variavel do tipo Data
+            Date dataDaReservaConvertidaParaDate = formatado.parse(this.dataDaReservaEntrda);
+       
+
+            //Vai converterar para qual quer formato de data que desejar
+            this.dataDaReservaEntrda = (new SimpleDateFormat("dd/MM/yyyy").format(dataDaReservaConvertidaParaDate));
+     
+        } catch (ParseException ex) {
+            return "erro ao formatar a String na calasse Quarto -> dataDaReservaEntrda";           
+        }
+        
+        return dataDaReservaEntrda;
     }
 
-    public Categoria getCategorias() {
-        return categorias;
+    public void setDataDaReservaEntrda(String dataDaReservaEntrda) {
+        this.dataDaReservaEntrda = dataDaReservaEntrda;
     }
 
-    public void setCategorias(Categoria categorias) {
-        this.categorias = categorias;
+    public String getDataDaReservaSaida() {
+        try {
+            //Vai pegar a data que o usuario digitar neste formato "dd/MM/yyyy" em String.
+            //Está em formato String, é preciso converter para DATE.
+            SimpleDateFormat formatado = new SimpleDateFormat("dd/MM/yyyy"); 
+            
+            //Vai converter na variavel do tipo Data
+            Date dataDaReservaConvertidaParaDate = formatado.parse(this.dataDaReservaSaida);
+       
+
+            //Vai converterar para qual quer formato de data que desejar
+            this.dataDaReservaSaida = (new SimpleDateFormat("dd/MM/yyyy").format(dataDaReservaConvertidaParaDate));
+     
+        } catch (ParseException ex) {
+            return "erro ao formatar a String na calasse Quarto -> dataDaReservaSaida";           
+        }
+
+        return dataDaReservaSaida;
+    }
+
+    public void setDataDaReservaSaida(String dataDaReservaSaida) {
+        this.dataDaReservaSaida = dataDaReservaSaida;
+    }
+
+    public String toString() {
+        return "ID: " + getId() + "\t\t Tipo do quarto: " + categoriaDoQuarto() + "\t\t Diarias: " + getQuantDeDiarias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida();
     }
 }
