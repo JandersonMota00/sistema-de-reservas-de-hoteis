@@ -12,23 +12,16 @@ public class ListaDeCategoria {
     }
 
     public boolean addCategoriaNaLista(Categoria categoria) {
-        if (pesquisarCategoria(categoria)){
+        if (!lista.contains(categoria)){
             getLista().add(categoria);
             return true;
-        } 
-        return false;
-    }
-    private boolean pesquisarCategoria (Categoria categoria) {
-        for (int i = 0; i < getLista().size(); i++) {
-            if(getLista().get(i).getNomeDaCategoria().equals(categoria.getNomeDaCategoria())){
-                return false;
-            }
         }
-        return true;
+        //toString();
+        return false;
     }
 
     @Override
     public String toString() {
-        return "Já existe!";
+        return "Categoria: " + getLista();
     }
 }
