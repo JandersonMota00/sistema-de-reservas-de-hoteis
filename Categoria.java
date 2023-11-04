@@ -1,6 +1,8 @@
 public class Categoria {
     private String nomeDaCategoria;
     private Double preco;
+
+    Quarto quartos;
     
     public Categoria(String nomeDaCategoria, Double preco) {
         this.nomeDaCategoria = nomeDaCategoria;
@@ -17,6 +19,9 @@ public class Categoria {
     }
     public void setPreco(Double preco) {
         this.preco = preco;
+        //Multiplicar 'preco' por 'quantidade de diarias'.
+        //PESQUISAR
+        quartos.getQuantDeDiarias();
     }
 
     @Override
