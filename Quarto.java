@@ -5,7 +5,7 @@ import java.util.Date;
 public class Quarto {
     private int id;
     private String categoriaDoQuarto;
-    private int quantDeDiarias;
+    private long quantDeDiarias;
     private String dataDaReservaEntrda;
     private String dataDaReservaSaida;
 
@@ -34,7 +34,7 @@ public class Quarto {
 
     //Calcular a 'data de saida' - 'data de entrada' para informar a quantidade de diárias.
     //PESQUISAR
-    public int getQuantDeDiarias() {
+    public long getQuantDeDiarias() {
         return quantDeDiarias;
     }
 
