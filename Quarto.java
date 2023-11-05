@@ -1,11 +1,13 @@
 import java.text.ParseException; //Sinaliza um erro foi atingido inesperademente (não corresponde a um formato ou padrão necessário do número ou data).
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Quarto {
     private int id;
     private String categoriaDoQuarto;
-    private long quantDeDiarias;
+    private long dias;
     private String dataDaReservaEntrda;
     private String dataDaReservaSaida;
 
@@ -24,18 +26,24 @@ public class Quarto {
         this.id = id;
     }
 
-    public String categoriaDoQuarto() {
+    public String getCategoriaDoQuarto() {
         return categoriaDoQuarto;
     }
 
-    public void categoriaDoQuarto(String categoriaDoQuarto) {
+    public void setCategoriaDoQuarto(String categoriaDoQuarto) {
         this.categoriaDoQuarto = categoriaDoQuarto;
     }
 
     //Calcular a 'data de saida' - 'data de entrada' para informar a quantidade de diárias.
     //PESQUISAR
-    public long getQuantDeDiarias() {
-        return quantDeDiarias;
+    public long getDias() {
+        LocalDate dataEntrada = LocalDate.of(getDataDaReservaEntrda());
+        LocalDate dataSaida = LocalDate.of(getDataDaReservaSaida());
+        
+        this.dias = ChronoUnit.DAYS.between(dataEntrada, dataSaida);
+
+        //long this.dias = dataEntrada.until(dataSaida, ChronoUnit.DAYS);
+        return dias;
     }
 
     public String getDataDaReservaEntrda() {
@@ -88,6 +96,6 @@ public class Quarto {
     }
 
     public String toString() {
-        return "ID: " + getId() + "\t\t Tipo do quarto: " + categoriaDoQuarto() + "\t\t Diarias: " + getQuantDeDiarias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida();
+        return "ID: " + getId() + "\t\t Tipo do quarto: " + getCategoriaDoQuarto() + "\t\t Diarias: " + getDias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida();
     }
 }
