@@ -16,7 +16,6 @@ public class ListaDeCategoria {
             getLista().add(categoria);
             return true;
         }
-        //toString();
         return false;
     }
 
