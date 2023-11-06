@@ -1,4 +1,5 @@
 public class Categoria {
+    public static String getPreco;
     private String nomeDaCategoria;
     private Double preco;
 
@@ -15,13 +16,8 @@ public class Categoria {
         this.nomeDaCategoria = nomeDaCategoria;
     }
     public Double getPreco() {
-        return preco;
-    }
-    public void setPreco(Double preco) {
-        this.preco = preco;
         //Multiplicar 'preco' por 'quantidade de diarias'.
-        //PESQUISAR
-        quartos.getQuantDeDiarias();
+        return (Integer) quartos.getDiferencaDeDias() * (Double) this.preco;
     }
 
     @Override
