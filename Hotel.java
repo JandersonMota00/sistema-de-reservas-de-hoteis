@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Hotel {
     private String nome;
-    private ArrayList<Quarto> quartos;
+    ArrayList<Quarto> quartos;
     
     public String getNome() {
       return nome;
