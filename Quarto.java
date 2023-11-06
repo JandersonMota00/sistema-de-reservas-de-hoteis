@@ -1,21 +1,26 @@
 import java.text.ParseException; //Sinaliza um erro foi atingido inesperademente (não corresponde a um formato ou padrão necessário do número ou data).
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
 
 public class Quarto {
     private int id;
     private String categoriaDoQuarto;
-    private long dias;
+    //private int diferencaDeDias;
     private String dataDaReservaEntrda;
     private String dataDaReservaSaida;
+    private int diaDaEntrada;
+    private int mesDaEntrada;
+    private int anoDaEntrada;
+    private int diaDaSaida;
+    private int mesDaSaida;
+    private int anoDaSaida;
 
-    public Quarto(int id, String categoriaDoQuarto, String dataDaReservaEntrda, String dataDaReservaSaida) {
+    public Quarto(int id, String categoriaDoQuarto) {
         this.id = id;
         this.categoriaDoQuarto = categoriaDoQuarto;
-        this.dataDaReservaEntrda = dataDaReservaEntrda;
-        this.dataDaReservaSaida = dataDaReservaSaida;
     }
 
     public int getId() {
@@ -36,14 +41,15 @@ public class Quarto {
 
     //Calcular a 'data de saida' - 'data de entrada' para informar a quantidade de diárias.
     //PESQUISAR
-    public long getDias() {
-        LocalDate dataEntrada = LocalDate.of(getDataDaReservaEntrda());
-        LocalDate dataSaida = LocalDate.of(getDataDaReservaSaida());
-        
-        this.dias = ChronoUnit.DAYS.between(dataEntrada, dataSaida);
+    public int getDiferencaDeDias() {
+        LocalDate dataEntrada = LocalDate.of(this.anoDaEntrada, this.mesDaEntrada, this.diaDaEntrada);
+        LocalDate dataSaida = LocalDate.of(this.anoDaSaida, this.mesDaSaida, this.diaDaSaida);
 
-        //long this.dias = dataEntrada.until(dataSaida, ChronoUnit.DAYS);
-        return dias;
+        //Calcula com base no diaDaEntrada, mês e anoDaEntrada.
+        Period periodo = Period.between(dataEntrada, dataSaida);
+
+        int diferencaDeDias = periodo.getDays();
+        return diferencaDeDias;
     }
 
     public String getDataDaReservaEntrda() {
@@ -57,9 +63,15 @@ public class Quarto {
             Date dataDaReservaConvertidaParaDate = formatado.parse(this.dataDaReservaEntrda);
        
 
-            //Vai converterar para qual quer formato de data que desejar
-            this.dataDaReservaEntrda = (new SimpleDateFormat("dd/MM/yyyy").format(dataDaReservaConvertidaParaDate));
-     
+            // Obtém o diaDaEntrada, mês e anoDaEntrada da data
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dataDaReservaConvertidaParaDate);
+            this.diaDaEntrada = calendar.get(Calendar.DAY_OF_MONTH);
+            this.mesDaEntrada = calendar.get(Calendar.MONTH) + 1; // Os mesDaEntradaes em Java são baseados em zero (janeiro = 0)
+            this.anoDaEntrada = calendar.get(Calendar.YEAR);
+
+            dataDaReservaEntrda = diaDaEntrada + "/" + mesDaEntrada + "/" + anoDaEntrada;
+
         } catch (ParseException ex) {
             return "erro ao formatar a String na calasse Quarto -> dataDaReservaEntrda";           
         }
@@ -80,9 +92,14 @@ public class Quarto {
             //Vai converter na variavel do tipo Data
             Date dataDaReservaConvertidaParaDate = formatado.parse(this.dataDaReservaSaida);
        
+            // Obtém o diaDaEntrada, mês e anoDaEntrada da data
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dataDaReservaConvertidaParaDate);
+            this.diaDaSaida = calendar.get(Calendar.DAY_OF_MONTH);
+            this.mesDaSaida = calendar.get(Calendar.MONTH) + 1; // Os mesDaEntradaes em Java são baseados em zero (janeiro = 0)
+            this.anoDaSaida = calendar.get(Calendar.YEAR);
 
-            //Vai converterar para qual quer formato de data que desejar
-            this.dataDaReservaSaida = (new SimpleDateFormat("dd/MM/yyyy").format(dataDaReservaConvertidaParaDate));
+            dataDaReservaSaida = diaDaSaida + "/" + mesDaSaida + "/" + anoDaSaida;
      
         } catch (ParseException ex) {
             return "erro ao formatar a String na calasse Quarto -> dataDaReservaSaida";           
@@ -96,6 +113,6 @@ public class Quarto {
     }
 
     public String toString() {
-        return "ID: " + getId() + "\t\t Tipo do quarto: " + getCategoriaDoQuarto() + "\t\t Diarias: " + getDias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida();
+        return "ID: " + getId() + "\t\t Tipo do quarto: " + getCategoriaDoQuarto() + "\t\t Diarias: " + getDiferencaDeDias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida() + "\nQuant. Diárias: " + getDiferencaDeDias() + "\t Total: " + Categoria.getPreco;
     }
 }
