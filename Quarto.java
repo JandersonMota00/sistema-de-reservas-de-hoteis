@@ -113,6 +113,6 @@ public class Quarto {
     }
 
     public String toString() {
-        return "ID: " + getId() + "\t\t Tipo do quarto: " + getCategoriaDoQuarto() + "\t\t Diarias: " + getDiferencaDeDias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida() + "\nQuant. Diárias: " + getDiferencaDeDias() + "\t Total: " + Categoria.getPreco;
+        return "ID: " + getId() + "\t\t Tipo do quarto: " + getCategoriaDoQuarto() + "\t\t Diarias: " + getDiferencaDeDias() + "\t\t Data entrada: " + getDataDaReservaEntrda() + "\t Data saída: " + getDataDaReservaSaida() + "\nQuant. Diárias: " + getDiferencaDeDias() + "\t Total: " + Categoria.getPreco();
     }
 }
