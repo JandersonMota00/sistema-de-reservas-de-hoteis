@@ -1,9 +1,8 @@
 public class Categoria {
-    public static String getPreco;
     private String nomeDaCategoria;
-    private Double preco;
+    private static Double preco;
 
-    Quarto quartos;
+    static Quarto quartos;
     
     public Categoria(String nomeDaCategoria, Double preco) {
         this.nomeDaCategoria = nomeDaCategoria;
@@ -15,9 +14,9 @@ public class Categoria {
     public void setNomeDaCategoria(String nomeDaCategoria) {
         this.nomeDaCategoria = nomeDaCategoria;
     }
-    public Double getPreco() {
+    public static Double getPreco() {
         //Multiplicar 'preco' por 'quantidade de diarias'.
-        return (Integer) quartos.getDiferencaDeDias() * (Double) this.preco;
+        return (Integer) quartos.getDiferencaDeDias() * preco;
     }
 
     @Override
