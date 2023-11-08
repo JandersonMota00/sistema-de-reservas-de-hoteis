@@ -1,6 +1,6 @@
 public class Categoria {
     private String nomeDaCategoria;
-    private static Double preco;
+    private Double preco;
 
     static Quarto quartos;
     
@@ -22,15 +22,12 @@ public class Categoria {
     @Override
     public boolean equals(Object obj) {
         if (this == obj){
-            if (obj instanceof Categoria) {
-                // transforma OBJ da classe Object, na classe Categoria.
-                Categoria categoriaAuciliar = (Categoria) obj; //typecast
-                return this.getNomeDaCategoria().equals(categoriaAuciliar.getNomeDaCategoria());
-            }
+            return true;
         }
         if (obj == null  || getClass() != obj.getClass()) {
             return false;
         }
-        return false;
+        Categoria categoria = (Categoria) obj; //typecast
+        return nomeDaCategoria.equals(categoria.nomeDaCategoria);
     }
 }
