@@ -18,6 +18,8 @@ public class Quarto {
     private int mesDaSaida;
     private int anoDaSaida;
 
+    //Categoria categoria;
+
     public Quarto(int id, String categoriaDoQuarto) {
         this.id = id;
         this.categoriaDoQuarto = categoriaDoQuarto;
@@ -110,6 +112,16 @@ public class Quarto {
 
     public void setDataDaReservaSaida(String dataDaReservaSaida) {
         this.dataDaReservaSaida = dataDaReservaSaida;
+    }
+
+    public boolean contains(Quarto quarto) {
+        return false;
+    }
+
+    public void add(Quarto quarto) {
+    }
+
+    public void addCategoria() {
     }
 
     public String toString() {
