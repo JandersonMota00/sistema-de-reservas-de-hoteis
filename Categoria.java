@@ -2,7 +2,7 @@ public class Categoria {
     private String nomeDaCategoria;
     private Double preco;
 
-    static Quarto quartos;
+    Quarto quarto;
     
     public Categoria(String nomeDaCategoria, Double preco) {
         this.nomeDaCategoria = nomeDaCategoria;
@@ -14,9 +14,18 @@ public class Categoria {
     public void setNomeDaCategoria(String nomeDaCategoria) {
         this.nomeDaCategoria = nomeDaCategoria;
     }
-    public static Double getPreco() {
+    public Double getPreco() {
         //Multiplicar 'preco' por 'quantidade de diarias'.
-        return (Integer) quartos.getDiferencaDeDias() * preco;
+        return quarto.getDiferencaDeDias() * this.preco;
+    }
+    public Quarto getQuarto() {
+        return quarto;
+    }
+    public void addQuarto(Quarto quarto) {
+        if(!quarto.contains(quarto)) {
+            quarto.add(quarto);
+            quarto.addCategoria();
+        }
     }
 
     @Override
